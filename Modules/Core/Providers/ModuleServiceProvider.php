@@ -18,6 +18,7 @@ class ModuleServiceProvider extends ServiceProvider
         foreach ($this->app['modules']->allEnabled() as $module) {
             $this->loadConfigs($module);
             $this->loadMigrations($module);
+            $this->registerHelpers($module);
         }
     }
 
@@ -47,5 +48,18 @@ class ModuleServiceProvider extends ServiceProvider
     private function loadMigrations(Module $module)
     {
         $this->loadMigrationsFrom("{$module->getPath()}/Database/Migrations");
+    }
+
+
+    /**
+     * register all php files in Support folder in all module
+     * @param $module
+     * @return void
+     */
+    public function registerHelpers($module)
+    {
+        foreach (glob("{$module->getPath()}/Support/*.php") as $filename) {
+            require_once($filename);
+        }
     }
 }
