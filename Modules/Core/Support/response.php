@@ -1,18 +1,21 @@
 <?php
+
 use \Illuminate\Support\Arr;
 
 
 if (!function_exists('errorResponse')) {
 
     /**
+     * @param $message
+     * @param $status
      * @param $data
      * @return \Illuminate\Http\JsonResponse
      */
-    function errorResponse($data = null)
+    function errorResponse($message, $status, $data = null)
     {
-        return response()->json(Arr::collapse([
-            ['error' => true], $data
-        ]));
+        return response()->json(array_filter(Arr::collapse([
+            ['error' => true, 'errors' => $message], $data
+        ])), $status);
     }
 }
 
@@ -21,12 +24,14 @@ if (!function_exists('successResponse')) {
 
     /**
      * @param $data
+     * @param $code
+     * @param $message
      * @return \Illuminate\Http\JsonResponse
      */
-    function successResponse($data = null)
+    function successResponse($data, $status, $message = null)
     {
         return response()->json(Arr::collapse([
-            ['error' => false], $data
-        ]));
+            ['error' => false, 'message' => $message], $data
+        ]), $status);
     }
 }
