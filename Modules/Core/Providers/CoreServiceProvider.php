@@ -2,15 +2,12 @@
 
 namespace Modules\Core\Providers;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\ServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider
 {
 
-    public function boot()
-    {
-
-    }
 
     /**
      * Register the service provider.
@@ -22,5 +19,15 @@ class CoreServiceProvider extends ServiceProvider
 
     }
 
+    public function boot()
+    {
+        Response::macro('success', function($message, $data) {
+            return response()->json([
+                'status' => 1,
+                'message' => $message,
+                'data' => $data,
+            ]);
+        });
+    }
 
 }

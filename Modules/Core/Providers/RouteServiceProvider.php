@@ -29,8 +29,10 @@ class RouteServiceProvider extends ServiceProvider
     private function mapModuleRoutes()
     {
         foreach ($this->app['modules']->allEnabled() as $module) {
-            $this->groupRoutes(function () use ($module) {
-                $this->mapPublicRoutes("{$module->getPath()}/Routes/api.php");
+            $this->groupApiRoutes(function () use ($module) {
+                if (file_exists($path = "{$module->getPath()}/Routes/api.php")) {
+                    require_once $path;
+                }
             });
         }
     }
@@ -43,8 +45,9 @@ class RouteServiceProvider extends ServiceProvider
      * @param \Closure $callback
      * @return void
      */
-    private function groupRoutes($callback)
+    private function groupApiRoutes($callback)
     {
+        $this->configureRateLimiting();
         Route::group([
             'prefix' => 'api',
             'middleware' => ['api'],
@@ -60,7 +63,7 @@ class RouteServiceProvider extends ServiceProvider
      * @param string $path
      * @return void
      */
-    private function mapPublicRoutes($path)
+    private function mapApiRoutes($path)
     {
         if (file_exists($path)) {
             require_once $path;
