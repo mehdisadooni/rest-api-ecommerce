@@ -1,0 +1,13 @@
+{
+    "name": "Province",
+    "alias": "province",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Province\\Providers\\ProvinceServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
