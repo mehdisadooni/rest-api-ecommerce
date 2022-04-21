@@ -1,15 +1,14 @@
 <?php
 
-namespace Modules\Brand\Http\Controllers\Api;
+namespace Modules\Brand\Http\Controllers\Api\V1;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Modules\Brand\Entities\Brand;
 use Modules\Brand\Http\Requests\StoreRequest;
 use Modules\Brand\Http\Requests\UpdateRequest;
 use Modules\Brand\Transformers\V1\BrandResource;
+use function successResponse;
 
 class BrandController extends Controller
 {
