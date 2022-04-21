@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Modules\Category\Entities\Category;
 use Modules\Category\Http\Requests\StoreRequest;
 use Modules\Category\Http\Requests\UpdateRequest;
-use Modules\Category\Transformers\CategoryResource;
+use Modules\Category\Transformers\V1\CategoryResource;
 
 class CategoryController extends Controller
 {
