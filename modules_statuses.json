@@ -1,5 +1,6 @@
 {
     "Core": true,
     "Brand": true,
-    "Category": true
+    "Category": true,
+    "Product": true
 }
