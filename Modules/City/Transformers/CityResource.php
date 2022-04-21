@@ -1,16 +1,16 @@
 <?php
 
-namespace Modules\Province\Transformers;
+namespace Modules\City\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Modules\City\Transformers\CityResource;
+use Modules\Province\Transformers\ProvinceResource;
 
-class ProvinceResource extends JsonResource
+class CityResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param \Illuminate\Http\Request
+     * @param  \Illuminate\Http\Request
      * @return array
      */
     public function toArray($request)
@@ -18,8 +18,7 @@ class ProvinceResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'cities' => CityResource::collection($this->whenLoaded('cities')),
-
+            'province' => new ProvinceResource($this->whenLoaded('province'))
         ];
     }
 }

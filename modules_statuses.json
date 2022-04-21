@@ -3,5 +3,6 @@
     "Brand": true,
     "Category": true,
     "Product": true,
-    "Province": true
+    "Province": true,
+    "City": true
 }
