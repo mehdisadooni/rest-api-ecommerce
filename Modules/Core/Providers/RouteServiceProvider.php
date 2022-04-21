@@ -34,6 +34,7 @@ class RouteServiceProvider extends ServiceProvider
                     require_once $path;
                 }
             });
+            $this->mapWebRoutes("{$module->getPath()}/Routes/web.php");
         }
     }
 
@@ -57,17 +58,17 @@ class RouteServiceProvider extends ServiceProvider
     }
 
 
-    /**
-     * Map public routes.
-     *
-     * @param string $path
-     * @return void
-     */
-    private function mapApiRoutes($path)
+    private function mapWebRoutes($path)
     {
-        if (file_exists($path)) {
-            require_once $path;
+        if (!file_exists($path)) {
+            return;
         }
+        Route::group([
+            'middleware' => ['web']
+
+        ], function () use ($path) {
+            require_once $path;
+        });
     }
 
     /**
