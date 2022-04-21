@@ -4,5 +4,6 @@
     "Category": true,
     "Product": true,
     "Province": true,
-    "City": true
+    "City": true,
+    "User": true
 }
