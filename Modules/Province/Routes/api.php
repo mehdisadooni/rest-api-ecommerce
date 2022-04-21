@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Route;
-use Modules\Province\Http\Controllers\ProvinceController;
+use \Modules\Province\Http\Controllers\Api\V1\ProvinceController;
 
 /*
 |--------------------------------------------------------------------------
